@@ -32,7 +32,8 @@ public class TailControllerTest {
 				Arguments.of(0.0f, Collections.emptyList()),
 				Arguments.of(APPLE_PRICE, Collections.singletonList(APPLE)),
 				Arguments.of(2 * ORANGE_PRICE, Arrays.asList(ORANGE, ORANGE)),
-				Arguments.of(APPLE_PRICE + ORANGE_PRICE, Arrays.asList(ORANGE, APPLE))
+				Arguments.of(APPLE_PRICE + ORANGE_PRICE, Arrays.asList(ORANGE, APPLE)),
+				Arguments.of(APPLE_PRICE, Arrays.asList(APPLE, APPLE))
 		);
 	}
 
@@ -44,7 +45,8 @@ public class TailControllerTest {
 		when(mockPriceMapping.getPrice(ORANGE))
 				.thenReturn(ORANGE_PRICE);
 
-		tailController = new TailController(mockPriceMapping);
+		tailController = new TailController(mockPriceMapping,
+				new ApplesBuyOneGetOneFreePromotion(mockPriceMapping));
 	}
 
 	@MethodSource(value = "testCases")
