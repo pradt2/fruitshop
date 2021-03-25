@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class TailController {
+public class Till {
 
 	private final PriceMapping priceMapping;
 	private final Promotion[] promotions;
 
-	public TailController(PriceMapping priceMapping, Promotion... promotions) {
+	public Till(PriceMapping priceMapping, Promotion... promotions) {
 		this.priceMapping = priceMapping;
 		this.promotions = promotions;
 	}

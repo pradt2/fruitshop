@@ -19,13 +19,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@DisplayName("As a tail operator I want to...")
-public class TailControllerTest {
+@DisplayName("As a till operator I want to...")
+public class TillTest {
 
 	private static final float APPLE_PRICE = 0.13f;
 	private static final float ORANGE_PRICE = 0.17f;
 
-	private static TailController tailController;
+	private static Till till;
 
 	public static Stream<Arguments> testCases() {
 		return Stream.of(
@@ -45,7 +45,7 @@ public class TailControllerTest {
 		when(mockPriceMapping.getPrice(ORANGE))
 				.thenReturn(ORANGE_PRICE);
 
-		tailController = new TailController(mockPriceMapping,
+		till = new Till(mockPriceMapping,
 				new ApplesBuyOneGetOneFreePromotion(mockPriceMapping));
 	}
 
@@ -53,7 +53,7 @@ public class TailControllerTest {
 	@ParameterizedTest(name = "Get amount due equal to {0} for the following products: {1}")
 	public void testGetTotalAmountDue(float expectedAmountDue, List<InventoryItem> items) {
 		assertEquals(expectedAmountDue,
-				tailController.getTotalAmountDue(items),
+				till.getTotalAmountDue(items),
 				"The amount due should match the expected value");
 	}
 
@@ -61,7 +61,7 @@ public class TailControllerTest {
 	@DisplayName("Get an exception when there is a null product in the list")
 	public void testGetTotalAmountForListWithNulls() {
 		assertThrows(IllegalArgumentException.class,
-				() -> tailController.getTotalAmountDue(Collections.singletonList(null)),
+				() -> till.getTotalAmountDue(Collections.singletonList(null)),
 				"An exception should be thrown for a list with null values");
 	}
 
